@@ -1,0 +1,21 @@
+# 의존성과 빌드 산출물은 저장소에 포함하지 않습니다.
+node_modules/
+.next/
+out/
+build/
+coverage/
+tsconfig.tsbuildinfo
+
+# 작업용 스크립트(스크린샷 캡쳐 등)는 저장소에 포함하지 않습니다.
+scripts/
+
+# Next.js local HTTPS 인증서는 개인별로 생성합니다.
+certificates/
+
+# 로컬 환경 값은 개인별로 관리합니다.
+.env*.local
+.env
+
+# 운영체제/에디터 임시 파일입니다.
+.DS_Store
+*.log
