@@ -1,0 +1,58 @@
+name: Deploy Cloudflare Workers
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  deployments: write
+
+concurrency:
+  group: cloudflare-workers-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy notifly-web-demo
+    runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_NOTIFLY_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_NOTIFLY_PROJECT_ID }}
+      NEXT_PUBLIC_NOTIFLY_PROJECT_USERNAME: ${{ secrets.NEXT_PUBLIC_NOTIFLY_PROJECT_USERNAME }}
+      NEXT_PUBLIC_NOTIFLY_ALLOW_USER_SUPPLIED_LOG_EVENT: "false"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm test
+
+      - name: Build Cloudflare Worker
+        run: npm run build:cloudflare
+
+      - name: Deploy to Cloudflare Workers
+        id: deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Print deployment URL
+        if: ${{ steps.deploy.outputs.deployment-url != '' }}
+        env:
+          DEPLOYMENT_URL: ${{ steps.deploy.outputs.deployment-url }}
+        run: |
+          printf 'Cloudflare deployment URL: %s\n' "$DEPLOYMENT_URL"

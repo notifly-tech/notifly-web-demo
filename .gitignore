@@ -4,6 +4,8 @@ node_modules/
 out/
 build/
 coverage/
+.open-next/
+.wrangler/
 tsconfig.tsbuildinfo
 
 # 작업용 스크립트(스크린샷 캡쳐 등)는 저장소에 포함하지 않습니다.

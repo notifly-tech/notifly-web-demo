@@ -217,17 +217,27 @@ Notifly 콘솔에서 웹 팝업 캠페인을 만들고, 아래 이벤트 중 하
 | 푸시가 계속 안 옴 | 브라우저 알림 권한이 차단되어 있지 않은지 확인 |
 | Service Worker 오류가 남 | 콘솔의 Service Worker path가 `/notifly-service-worker.js`인지 확인 |
 
-## 배포해서 테스트하기
+## Cloudflare Workers에 배포해서 테스트하기
 
-Vercel 같은 HTTPS 배포 환경에 올리면 웹 푸시를 더 실제 환경에 가깝게 테스트할 수 있습니다.
+이 저장소에는 `notifly-web-demo`라는 이름의 Cloudflare Workers 배포 설정이 포함되어 있습니다. 배포는 자동으로 실행되지 않고, GitHub Actions에서 직접 눌렀을 때만 실행됩니다.
 
-배포 환경에서도 필요한 값은 동일합니다.
+GitHub 저장소의 Secrets에는 아래 값이 필요합니다.
 
 ```bash
 NEXT_PUBLIC_NOTIFLY_PROJECT_ID=...
 NEXT_PUBLIC_NOTIFLY_PROJECT_USERNAME=...
-NEXT_PUBLIC_NOTIFLY_ALLOW_USER_SUPPLIED_LOG_EVENT=false
+CLOUDFLARE_ACCOUNT_ID=...
+CLOUDFLARE_API_TOKEN=...
 ```
+
+배포 방법은 간단합니다.
+
+1. GitHub 저장소에서 `Actions` 탭으로 이동합니다.
+2. `Deploy Cloudflare Workers` workflow를 선택합니다.
+3. `Run workflow`를 누릅니다.
+4. workflow가 끝나면 Cloudflare Workers의 `notifly-web-demo` 서비스에 배포됩니다.
+
+Cloudflare Workers는 HTTPS로 열리므로 웹 푸시를 로컬보다 실제 환경에 가깝게 테스트할 수 있습니다.
 
 ## 개발자가 확인할 때
 
@@ -235,6 +245,7 @@ NEXT_PUBLIC_NOTIFLY_ALLOW_USER_SUPPLIED_LOG_EVENT=false
 npm run lint
 npm test
 npm run build
+npm run build:cloudflare
 ```
 
-이 명령들은 문법, 테스트, production build가 정상인지 확인합니다.
+이 명령들은 문법, 테스트, production build, Cloudflare Workers용 번들이 정상인지 확인합니다.
