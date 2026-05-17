@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 
+import { handleDemoUnavailableClick } from "@/lib/demo-unavailable";
 import { trackStorefrontEvent } from "@/lib/notifly-client";
 import { createProductViewedEvent } from "@/lib/events";
 import { formatPrice, formatPriceCompact, type Product } from "@/lib/products";
@@ -38,7 +39,12 @@ export function ProductCard({ product }: ProductCardProps) {
 
   return (
     <article className="product-card" onMouseEnter={handleHoverView}>
-      <Link href={`/?p=${product.id}`} className="thumb-link" aria-label={product.name}>
+      <Link
+        href={`/?p=${product.id}`}
+        className="thumb-link"
+        aria-label={product.name}
+        onClick={handleDemoUnavailableClick}
+      >
         <div className="thumb" style={{ background: shadeBackground(product.accentColor) }}>
           <div className="thumb-bg" aria-hidden>
             {product.glyph}

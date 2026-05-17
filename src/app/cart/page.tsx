@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 import { PageViewTracker } from "@/components/PageViewTracker";
+import { handleDemoUnavailableClick } from "@/lib/demo-unavailable";
 import { useCart } from "@/lib/cart-store";
 import { findProduct, formatPrice } from "@/lib/products";
 
@@ -86,7 +87,13 @@ export default function CartPage() {
                     </div>
                     <div>
                       <p className="brand-name">{product.brand}</p>
-                      <Link href={`/?p=${product.id}`} className="cart-name">{product.name}</Link>
+                      <Link
+                        href={`/?p=${product.id}`}
+                        className="cart-name"
+                        onClick={handleDemoUnavailableClick}
+                      >
+                        {product.name}
+                      </Link>
                       <p className="cart-meta">
                         {formatPrice(product.price)}{" "}
                         {product.freeShipping && <span className="badge-line">무료배송</span>}

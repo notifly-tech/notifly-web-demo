@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { UserProfilePanel } from "@/components/UserProfilePanel";
+import { handleDemoUnavailableClick } from "@/lib/demo-unavailable";
 import { EventTimeline, type EventRecord } from "@/components/EventTimeline";
 import { PageViewTracker } from "@/components/PageViewTracker";
 import { PushPermissionPanel } from "@/components/PushPermissionPanel";
@@ -102,11 +103,11 @@ export default function MyPage() {
 
       <section className="mypage-quicklinks">
         <Link href="/cart">장바구니</Link>
-        <Link href="#">주문 내역</Link>
-        <Link href="#">배송 조회</Link>
-        <Link href="#">교환·반품 신청</Link>
-        <Link href="#">쿠폰함</Link>
-        <Link href="#">1:1 문의</Link>
+        <Link href="#" onClick={handleDemoUnavailableClick}>주문 내역</Link>
+        <Link href="#" onClick={handleDemoUnavailableClick}>배송 조회</Link>
+        <Link href="#" onClick={handleDemoUnavailableClick}>교환·반품 신청</Link>
+        <Link href="#" onClick={handleDemoUnavailableClick}>쿠폰함</Link>
+        <Link href="#" onClick={handleDemoUnavailableClick}>1:1 문의</Link>
       </section>
 
       <section className="block">

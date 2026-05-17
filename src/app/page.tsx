@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import { PageViewTracker } from "@/components/PageViewTracker";
 import { ProductCard } from "@/components/ProductCard";
+import { handleDemoUnavailableClick } from "@/lib/demo-unavailable";
 import { categories, products } from "@/lib/products";
 
 export default function Home() {
@@ -29,10 +30,10 @@ export default function Home() {
             매주 새롭게 만나보세요.
           </p>
           <div className="hero-actions">
-            <Link className="btn primary" href="/?ed=editorial">
+            <Link className="btn primary" href="/?ed=editorial" onClick={handleDemoUnavailableClick}>
               이번 주 에디토리얼 →
             </Link>
-            <Link className="btn ghost-light" href="/?cat=living">
+            <Link className="btn ghost-light" href="/?cat=living" onClick={handleDemoUnavailableClick}>
               리빙 컬렉션 둘러보기
             </Link>
           </div>
@@ -48,13 +49,13 @@ export default function Home() {
             <p className="kicker">이번 주 단독</p>
             <strong>OBJECT LAB 펜던트 라이트</strong>
             <p>회원 전용 EARLY ACCESS · 5월 31일까지</p>
-            <Link href="/?p=lt-pendant-lamp-09">자세히 보기 →</Link>
+            <Link href="/?p=lt-pendant-lamp-09" onClick={handleDemoUnavailableClick}>자세히 보기 →</Link>
           </div>
           <div className="hero-promo dark">
             <p className="kicker">MD INTERVIEW</p>
             <strong>도예가 김민영의 작업실</strong>
             <p>흙의 결을 닮은 그릇이 만들어지기까지</p>
-            <Link href="/?ed=brand">매거진에서 읽기 →</Link>
+            <Link href="/?ed=brand" onClick={handleDemoUnavailableClick}>매거진에서 읽기 →</Link>
           </div>
         </aside>
       </section>
@@ -82,7 +83,7 @@ export default function Home() {
       {/* Category quick nav */}
       <section className="cat-quick">
         {categories.map((c) => (
-          <Link key={c.value} href={`/?cat=${c.value}`} className="cat-quick-card">
+          <Link key={c.value} href={`/?cat=${c.value}`} className="cat-quick-card" onClick={handleDemoUnavailableClick}>
             <span className="emoji" aria-hidden>{c.icon}</span>
             <span>{c.label}</span>
           </Link>
@@ -96,7 +97,7 @@ export default function Home() {
             <p className="eyebrow">WEEKLY BEST</p>
             <h2>이번 주 가장 많이 담은 베스트</h2>
           </div>
-          <Link href="/?sort=best" className="block-more">전체 보기 →</Link>
+          <Link href="/?sort=best" className="block-more" onClick={handleDemoUnavailableClick}>전체 보기 →</Link>
         </header>
         <ol className="rank-list">
           {best.map((p, idx) => (
@@ -130,7 +131,7 @@ export default function Home() {
           <p>
             사물의 결을 살리는 간접광, 무드를 만드는 조명 5선. 노티프의 라이팅 디렉터가 직접 골랐습니다.
           </p>
-          <Link href="/?ed=lighting" className="btn ghost-light">
+          <Link href="/?ed=lighting" className="btn ghost-light" onClick={handleDemoUnavailableClick}>
             매거진 읽기 →
           </Link>
         </div>
@@ -160,7 +161,7 @@ export default function Home() {
             <p className="eyebrow">NEW IN</p>
             <h2>이주의 신상 입고</h2>
           </div>
-          <Link href="/?sort=new" className="block-more">전체 보기 →</Link>
+          <Link href="/?sort=new" className="block-more" onClick={handleDemoUnavailableClick}>전체 보기 →</Link>
         </header>
         <div className="product-grid">
           {newArrivals.map((p) => <ProductCard key={p.id} product={p} />)}

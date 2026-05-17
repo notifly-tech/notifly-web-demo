@@ -36,4 +36,22 @@ describe("Notifly integration contract after storefront redesign", () => {
     expect(body).toContain("createNewsletterSubscribedEvent");
     expect(body).toContain("trackStorefrontEvent");
   });
+
+  it("keeps unsupported storefront links explicit instead of silently navigating", () => {
+    const message = source("src/lib/demo-unavailable.ts");
+    const header = source("src/components/SiteHeader.tsx");
+    const home = source("src/app/page.tsx");
+    const mypage = source("src/app/mypage/page.tsx");
+    const footer = source("src/components/SiteFooter.tsx");
+    const checkout = source("src/app/checkout/page.tsx");
+
+    expect(message).toContain(
+      "데모에서는 제공되지 않는 기능입니다. 장바구니 담기, 알림 받기, 뉴스레터 구독, 결제 완료 흐름을 사용해 보세요."
+    );
+    expect(header).toContain("onSubmit={handleDemoUnavailableClick}");
+    expect(home).toContain("onClick={handleDemoUnavailableClick}");
+    expect(mypage).toContain("onClick={handleDemoUnavailableClick}");
+    expect(footer).toContain("onClick={handleDemoUnavailableClick}");
+    expect(checkout).toContain("onClick={showDemoUnavailable}");
+  });
 });

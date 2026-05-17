@@ -7,6 +7,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useCart } from "@/lib/cart-store";
 import { PageViewTracker } from "@/components/PageViewTracker";
 import { useNotiflyStatus } from "@/components/NotiflyProvider";
+import { showDemoUnavailable } from "@/lib/demo-unavailable";
 import { findProduct, formatPrice } from "@/lib/products";
 import {
   createCheckoutStartedEvent,
@@ -113,7 +114,7 @@ export default function CheckoutPage() {
               <label className="span-1">우편번호<input value={zip} onChange={(e) => setZip(e.target.value)} /></label>
               <label className="span-1">
                 <span>&nbsp;</span>
-                <button type="button" className="ghost compact">주소 검색</button>
+                <button type="button" className="ghost compact" onClick={showDemoUnavailable}>주소 검색</button>
               </label>
               <label className="span-2">기본 주소<input value={address1} onChange={(e) => setAddress1(e.target.value)} /></label>
               <label className="span-2">상세 주소<input value={address2} onChange={(e) => setAddress2(e.target.value)} /></label>

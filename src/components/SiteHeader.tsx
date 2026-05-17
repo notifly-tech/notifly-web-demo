@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
+import { handleDemoUnavailableClick } from "@/lib/demo-unavailable";
 import { useCart } from "@/lib/cart-store";
 import { categories } from "@/lib/products";
 
@@ -42,14 +43,14 @@ export function SiteHeader() {
           <small>오늘의 무드, 내일의 일상</small>
         </Link>
 
-        <div className="search-bar">
+        <form className="search-bar" onSubmit={handleDemoUnavailableClick}>
           <span aria-hidden>⌕</span>
           <input
             type="search"
             placeholder="브랜드, 상품, 컬러로 검색해 보세요"
             aria-label="상품 검색"
           />
-        </div>
+        </form>
 
         <div className="top-utility">
           <Link href="/mypage">마이페이지</Link>
@@ -62,15 +63,15 @@ export function SiteHeader() {
 
       <nav className="cat-nav" aria-label="카테고리">
         <Link href="/" className="is-active">홈</Link>
-        <Link href="/?sort=new">신상품</Link>
-        <Link href="/?sort=best">베스트</Link>
+        <Link href="/?sort=new" onClick={handleDemoUnavailableClick}>신상품</Link>
+        <Link href="/?sort=best" onClick={handleDemoUnavailableClick}>베스트</Link>
         {categories.map((c) => (
-          <Link key={c.value} href={`/?cat=${c.value}`}>
+          <Link key={c.value} href={`/?cat=${c.value}`} onClick={handleDemoUnavailableClick}>
             {c.label}
           </Link>
         ))}
-        <Link href="/?ed=magazine">매거진</Link>
-        <Link href="/?ed=brand">브랜드</Link>
+        <Link href="/?ed=magazine" onClick={handleDemoUnavailableClick}>매거진</Link>
+        <Link href="/?ed=brand" onClick={handleDemoUnavailableClick}>브랜드</Link>
       </nav>
     </header>
   );

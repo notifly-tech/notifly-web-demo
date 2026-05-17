@@ -1,4 +1,8 @@
+"use client";
+
 import Link from "next/link";
+
+import { handleDemoUnavailableClick } from "@/lib/demo-unavailable";
 
 import { NewsletterForm } from "./NewsletterForm";
 
@@ -32,32 +36,32 @@ export function SiteFooter() {
         <div>
           <h5>About</h5>
           <ul>
-            <li><Link href="#">회사 소개</Link></li>
-            <li><Link href="#">입점 문의</Link></li>
-            <li><Link href="#">매거진</Link></li>
-            <li><Link href="#">채용</Link></li>
+            <li><Link href="#" onClick={handleDemoUnavailableClick}>회사 소개</Link></li>
+            <li><Link href="#" onClick={handleDemoUnavailableClick}>입점 문의</Link></li>
+            <li><Link href="#" onClick={handleDemoUnavailableClick}>매거진</Link></li>
+            <li><Link href="#" onClick={handleDemoUnavailableClick}>채용</Link></li>
           </ul>
         </div>
         <div>
           <h5>Customer</h5>
           <ul>
-            <li><Link href="#">공지사항</Link></li>
-            <li><Link href="#">자주 묻는 질문</Link></li>
-            <li><Link href="#">1:1 문의</Link></li>
-            <li><Link href="#">배송·교환·반품</Link></li>
+            <li><Link href="#" onClick={handleDemoUnavailableClick}>공지사항</Link></li>
+            <li><Link href="#" onClick={handleDemoUnavailableClick}>자주 묻는 질문</Link></li>
+            <li><Link href="#" onClick={handleDemoUnavailableClick}>1:1 문의</Link></li>
+            <li><Link href="#" onClick={handleDemoUnavailableClick}>배송·교환·반품</Link></li>
           </ul>
         </div>
         <div>
           <h5>Policy</h5>
           <ul>
-            <li><Link href="#">이용약관</Link></li>
+            <li><Link href="#" onClick={handleDemoUnavailableClick}>이용약관</Link></li>
             <li>
-              <Link href="#" style={{ fontWeight: 700 }}>
+              <Link href="#" style={{ fontWeight: 700 }} onClick={handleDemoUnavailableClick}>
                 개인정보 처리방침
               </Link>
             </li>
-            <li><Link href="#">마케팅 정보 수신동의</Link></li>
-            <li><Link href="#">청소년 보호정책</Link></li>
+            <li><Link href="#" onClick={handleDemoUnavailableClick}>마케팅 정보 수신동의</Link></li>
+            <li><Link href="#" onClick={handleDemoUnavailableClick}>청소년 보호정책</Link></li>
           </ul>
         </div>
       </div>
